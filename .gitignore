@@ -1,0 +1,8 @@
+# Ignore personal data and generated output.
+# data/* (not data/*.md) so subfolders like data/job-history/ are covered too.
+data/*
+!data/templates/
+output/*
+config.md
+pipeline.md
+strategy/positioning.md

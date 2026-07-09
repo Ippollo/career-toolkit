@@ -1,0 +1,151 @@
+/* ============================================================
+   Resume & Cover Letter PDF Stylesheet
+   Used by: /export-pdf workflow (md-to-pdf, Puppeteer rendering)
+   ============================================================ */
+
+/* --- Page Setup --- */
+@page {
+  size: Letter;
+  margin: 0.5in 0.6in;
+}
+
+/* --- Base Typography --- */
+body {
+  font-family: "Segoe UI", Calibri, Arial, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.45;
+  color: #1a1a1a;
+  max-width: 100%;
+}
+
+/* --- Headings --- */
+h1 {
+  font-size: 20pt;
+  font-weight: 700;
+  margin: 0 0 2pt 0;
+  padding: 0;
+  color: #111;
+  border-bottom: none;
+}
+
+h2 {
+  font-size: 12pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5pt;
+  color: #2a2a2a;
+  border-bottom: 1.5pt solid #333;
+  padding-bottom: 2pt;
+  margin: 14pt 0 6pt 0;
+}
+
+/* --- Title/Tagline ---
+   The first h2 is a professional tagline (e.g. "Strategic Operations Leader"),
+   not a section heading. Style it as a subtitle.
+*/
+h1 + p + h2 {
+  font-size: 11pt;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.3pt;
+  color: #444;
+  border-bottom: none;
+  margin: 2pt 0 10pt 0;
+  padding-bottom: 0;
+}
+
+h3 {
+  font-size: 11pt;
+  font-weight: 600;
+  margin: 8pt 0 2pt 0;
+  color: #1a1a1a;
+}
+
+/* --- Contact Line ---
+   The line right below h1, typically rendered as:
+   **Email** · **Phone** · **City, Province**
+*/
+h1 + p {
+  font-size: 10pt;
+  color: #444;
+  margin: 0 0 4pt 0;
+}
+
+/* --- Body Text --- */
+p {
+  margin: 4pt 0;
+  orphans: 3;
+  widows: 3;
+}
+
+/* --- Bold role metadata ---
+   e.g. **Jan 2020 – Mar 2023**
+*/
+h3 + p strong {
+  font-size: 10pt;
+  color: #555;
+  font-weight: 600;
+}
+
+/* --- Lists (Achievement Bullets) --- */
+ul, ol {
+  margin: 3pt 0 6pt 0;
+  padding-left: 18pt;
+}
+
+li {
+  margin: 2pt 0;
+  line-height: 1.4;
+}
+
+/* --- Skills Section Inline Lists --- */
+p > strong {
+  color: #2a2a2a;
+}
+
+/* --- Horizontal Rules --- */
+hr {
+  border: none;
+  border-top: 1pt solid #ccc;
+  margin: 10pt 0;
+}
+
+/* --- Links (in case any survive into the PDF) --- */
+a {
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+/* --- Tailoring Notes (italic block at bottom) ---
+   Hide from PDF output — these are internal notes
+*/
+hr:last-of-type ~ p > em {
+  display: none;
+}
+
+/* --- Page Break Utility ---
+   Insert <div class="page-break"></div> between
+   resume and cover letter if combining into one PDF
+*/
+.page-break {
+  page-break-after: always;
+  break-after: page;
+}
+
+/* --- Print Optimizations --- */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  h2, h3 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  ul, ol {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
